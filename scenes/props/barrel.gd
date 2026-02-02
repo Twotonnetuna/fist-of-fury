@@ -31,12 +31,6 @@ func on_receive_damage(_damage: int, direction: Vector2) -> void:
 		state = State.DESTROYED
 		velocity = direction * knockback_intensity
 		
-	#elif damage > health:
-		#velocity = direction * knockback_intensity
-		#if direction == Vector2.RIGHT:
-			#sprite.flip_h = true
-		#animation_player.play("barrel_explode")
-
 func handle_air_time(delta: float) -> void:
 	if state == State.DESTROYED:
 		modulate.a -= delta
