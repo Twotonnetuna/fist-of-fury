@@ -334,16 +334,16 @@ shape = SubResource("RectangleShape2D_76oj4")
 [node name="EnemySlots" type="Node2D" parent="." index="6"]
 
 [node name="EnemySlot" parent="EnemySlots" index="0" instance=ExtResource("4_dyp2m")]
-position = Vector2(17, -6)
+position = Vector2(17, 3)
 
 [node name="EnemySlot2" parent="EnemySlots" index="1" instance=ExtResource("4_dyp2m")]
-position = Vector2(17, 6)
+position = Vector2(17, -6)
 
 [node name="EnemySlot3" parent="EnemySlots" index="2" instance=ExtResource("4_dyp2m")]
-position = Vector2(-17, 6)
+position = Vector2(-18, 3)
 
 [node name="EnemySlot4" parent="EnemySlots" index="3" instance=ExtResource("4_dyp2m")]
-position = Vector2(-17, -6)
+position = Vector2(-18, -6)
 
 [editable path="DamageEmitter"]
 [editable path="DamageReceiver"]
