@@ -17,8 +17,13 @@ func handle_input() -> void:
 				velocity = Vector2.ZERO
 			else:
 				velocity = direction * speed
-	
-func on_receive_damage(damage: int, direction: Vector2, hit_type: DamageReceiver.HitType) -> void:
-	super.on_receive_damage(damage, direction, hit_type)
+
+func set_heading() -> void:
+	if player == null:
+		return
+	heading = Vector2.LEFT if position.x > player.position.x else Vector2.RIGHT
+
+func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReceiver.HitType) -> void:
+	super.on_receive_damage(amount, direction, hit_type)
 	if current_health == 0:
 		player.free_slot(self)
