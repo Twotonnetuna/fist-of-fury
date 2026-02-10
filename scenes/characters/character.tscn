@@ -31,6 +31,10 @@ monitorable = true
 
 [node name="KnifeSprite" type="Sprite2D" parent="."]
 
+[node name="ProjectileAim" type="RayCast2D" parent="."]
+target_position = Vector2(100, 0)
+collision_mask = 0
+
 [editable path="DamageEmitter"]
 [editable path="DamageReceiver"]
 [editable path="CollateralDamageEmitter"]
