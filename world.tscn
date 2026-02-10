@@ -52,4 +52,3 @@ position = Vector2(95, 56)
 duration_between_hits = 2000
 duration_prep_hit = 500
 player = NodePath("../Player")
-damage = 2

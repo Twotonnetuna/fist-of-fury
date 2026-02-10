@@ -8,6 +8,7 @@ const GRAVITY := 600.0
 @export var damage_power : int
 @export var duration_grounded : float
 @export var flight_speed : float
+@export var has_knife : bool
 @export var jump_intensity : float
 @export var knockback_intensity : float
 @export var knockdown_intensity : float
@@ -20,8 +21,10 @@ const GRAVITY := 600.0
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var damage_emitter: Area2D = $DamageEmitter
 @onready var damage_receiver: DamageReceiver = $DamageReceiver
+@onready var knife_sprite: Sprite2D = $KnifeSprite
 
-enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PREP_ATTACK}
+
+enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PREP_ATTACK, THROW}
 
 var anim_attacks := []
 var anim_map := {
@@ -37,6 +40,7 @@ var anim_map := {
 	State.DEATH: "grounded",
 	State.FLY: "fly",
 	State.PREP_ATTACK: "idle",
+	State.THROW: "throw",
 }
 var attack_combo_index := 0
 var current_health := 0
@@ -64,7 +68,9 @@ func _process(delta: float) -> void:
 	handle_death(delta)
 	set_heading()
 	flip_sprites()
+	knife_sprite.visible = has_knife
 	character_sprite.position = Vector2.UP * height
+	knife_sprite.position = Vector2.UP * height
 	collision_shape.disabled = is_collision_disabled()
 	move_and_slide()
 
@@ -120,9 +126,11 @@ func set_heading() -> void:
 func flip_sprites() -> void:
 	if heading == Vector2.RIGHT:
 		character_sprite.flip_h = false
+		knife_sprite.flip_h = false
 		damage_emitter.scale.x = 1
 	else:
 		character_sprite.flip_h = true
+		knife_sprite.flip_h = true
 		damage_emitter.scale.x = -1
 
 func can_move() -> bool:
@@ -138,13 +146,17 @@ func can_jumpkick() -> bool:
 	return state == State.JUMP
 
 func can_get_hurt() -> bool:
-	return [State.IDLE, State.WALK, State.TAKEOFF, State.JUMP, State.LAND].has(state)
+	return [State.IDLE, State.WALK, State.TAKEOFF, State.LAND].has(state)
 	
 func is_collision_disabled() -> bool:
 	return [State.GROUNDED, State.DEATH, State.FLY].has(state)
 
 func on_action_complete() -> void:
 		state = State.IDLE
+
+func on_throw_complte() -> void:
+	state = State.IDLE
+	has_knife = false
 
 func on_takeoff_complete() -> void:
 	state = State.JUMP
