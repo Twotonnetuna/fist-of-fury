@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0ees5lp8qng3"]
+[gd_scene load_steps=9 format=3 uid="uid://c0ees5lp8qng3"]
 
 [ext_resource type="PackedScene" uid="uid://jrp3x1d7w28m" path="res://scenes/stage/stage.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://qko8pt3oxhi8" path="res://world.gd" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://25wfy4npumw6" path="res://scenes/characters/player.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://bsw265i5mglvj" path="res://scenes/props/barrel.tscn" id="4_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://bpbirds0ua111" path="res://scenes/characters/basic_enemy.tscn" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://bpi2kcxdpgosl" path="res://scenes/props/knife.tscn" id="6_dwbse"]
+[ext_resource type="PackedScene" uid="uid://ixpsmlldffcv" path="res://scenes/characters/goon_enemy.tscn" id="7_pkg7o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tlwt5"]
 size = Vector2(6, 64)
@@ -29,13 +31,13 @@ sync_to_physics = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/InvisibleWalls/LeftWall"]
 shape = SubResource("RectangleShape2D_tlwt5")
 
-[node name="RighWall" type="AnimatableBody2D" parent="Camera/InvisibleWalls"]
+[node name="RightWall" type="AnimatableBody2D" parent="Camera/InvisibleWalls"]
 position = Vector2(100, 32)
 collision_layer = 128
 collision_mask = 0
 sync_to_physics = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/InvisibleWalls/RighWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/InvisibleWalls/RightWall"]
 shape = SubResource("RectangleShape2D_tlwt5")
 
 [node name="ActorsContainer" type="Node2D" parent="."]
@@ -50,4 +52,12 @@ position = Vector2(42, 44)
 [node name="BasicEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_036b0")]
 position = Vector2(95, 56)
 player = NodePath("../Player")
+can_respawn_knives = false
 duration_between_knife_respawn = 1000
+
+[node name="Knife" parent="ActorsContainer" instance=ExtResource("6_dwbse")]
+position = Vector2(32, 55)
+
+[node name="GoonEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_pkg7o")]
+position = Vector2(64, 58)
+player = NodePath("../Player")

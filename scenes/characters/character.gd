@@ -20,13 +20,14 @@ const GRAVITY := 600.0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var character_sprite: Sprite2D = $CharacterSprite
 @onready var collateral_damage_emitter: Area2D = $CollateralDamageEmitter
+@onready var collectible_sensor: Area2D = $CollectibleSensor
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var damage_emitter: Area2D = $DamageEmitter
 @onready var damage_receiver: DamageReceiver = $DamageReceiver
 @onready var knife_sprite: Sprite2D = $KnifeSprite
 @onready var projectile_aim: RayCast2D = $ProjectileAim
 
-enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PREP_ATTACK, THROW}
+enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PREP_ATTACK, THROW, PICKUP}
 
 var anim_attacks := []
 var anim_map := {
@@ -43,6 +44,7 @@ var anim_map := {
 	State.FLY: "fly",
 	State.PREP_ATTACK: "idle",
 	State.THROW: "throw",
+	State.PICKUP: "pickup",
 }
 var attack_combo_index := 0
 var current_health := 0
@@ -88,9 +90,8 @@ func handle_movement():
 func handle_input() -> void:
 	pass
 
-func handle_knife_respawns() -> void:
-	if can_respawn_knives and not has_knife and (Time.get_ticks_msec() - time_since_knife_dismiss > duration_between_knife_respawn):
-		has_knife = true
+func handle_prep_attack() -> void:
+	pass
 
 func handle_grounded() -> void:
 	if state == State.GROUNDED and (Time.get_ticks_msec() - time_since_grounded > duration_grounded):
@@ -98,6 +99,10 @@ func handle_grounded() -> void:
 			state = State.DEATH
 		else:
 			state = State.LAND
+
+func handle_knife_respawns() -> void:
+	if can_respawn_knives and not has_knife and (Time.get_ticks_msec() - time_since_knife_dismiss > duration_between_knife_respawn):
+		has_knife = true
 
 func handle_death(delta: float):
 	if state == State.DEATH and not can_respawn:
@@ -124,9 +129,6 @@ func handle_air_time(delta: float) -> void:
 			velocity = Vector2.ZERO
 		else :
 			height_speed -= GRAVITY * delta
-
-func handle_prep_attack() -> void:
-	pass
 
 func set_heading() -> void:
 	pass
@@ -157,7 +159,25 @@ func can_jumpkick() -> bool:
 
 func can_get_hurt() -> bool:
 	return [State.IDLE, State.WALK, State.TAKEOFF, State.LAND].has(state)
-	
+
+func can_pickup_collectible() -> bool:
+	var collectible_areas := collectible_sensor.get_overlapping_areas()
+	if collectible_areas.size() == 0:
+		return false
+	var collectible : Collectible = collectible_areas[0]
+	if collectible.type == Collectible.Type.KNIFE and not has_knife:
+		return true
+	return false
+
+func pickup_collectible() -> void:
+	if can_pickup_collectible():
+		var collectible_areas := collectible_sensor.get_overlapping_areas()
+		var collectible : Collectible = collectible_areas[0]
+		if collectible.type == Collectible.Type.KNIFE and not has_knife:
+			has_knife = true
+		
+		collectible.queue_free()
+
 func is_collision_disabled() -> bool:
 	return [State.GROUNDED, State.DEATH, State.FLY].has(state)
 
@@ -172,11 +192,16 @@ func on_takeoff_complete() -> void:
 	state = State.JUMP
 	height_speed = jump_intensity
 
+func on_pickup_complete() -> void:
+	state = State.IDLE
+	pickup_collectible()
+
 func on_land_complete() -> void:
 	state = State.IDLE
 
 func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReceiver.HitType) -> void:
 	if can_get_hurt():
+		can_respawn_knives = false
 		if has_knife:
 			has_knife = false
 			time_since_knife_dismiss = Time.get_ticks_msec()
