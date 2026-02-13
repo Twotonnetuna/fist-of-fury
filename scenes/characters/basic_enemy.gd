@@ -18,7 +18,7 @@ var time_since_prep_range_attack := Time.get_ticks_msec()
 func _ready() -> void:
 	super._ready()
 	anim_attacks = ["punch", "punch_alt"]
-
+	
 func handle_input() -> void:
 	if player != null and can_move():
 		if can_respawn_knives or has_knife:
@@ -39,7 +39,6 @@ func goto_range_position() -> void:
 		closest_destination = left_destination
 	else:
 		closest_destination = right_destination
-	
 	if (closest_destination - position).length() < 1:
 		velocity = Vector2.ZERO
 	else:
@@ -49,7 +48,7 @@ func goto_range_position() -> void:
 		state = State.THROW
 		time_since_knife_dismiss = Time.get_ticks_msec()
 		time_since_last_range_attack = Time.get_ticks_msec()
-	
+
 func goto_melee_position() -> void:
 	if can_pickup_collectible():
 		state = State.PICKUP
@@ -57,7 +56,7 @@ func goto_melee_position() -> void:
 			player.free_slot(self)
 	elif player_slot == null:
 		player_slot = player.reserve_slot(self)
-
+	
 	if player_slot != null:
 		var direction := (player_slot.global_position - global_position).normalized()
 		if is_player_within_range():
@@ -67,6 +66,7 @@ func goto_melee_position() -> void:
 				time_since_prep_melee_attack = Time.get_ticks_msec()
 		else:
 			velocity = direction * speed
+	
 
 func handle_prep_attack() -> void:
 	if state == State.PREP_ATTACK and (Time.get_ticks_msec() - time_since_prep_melee_attack > duration_prep_melee_attack):
@@ -88,7 +88,7 @@ func can_throw() -> bool:
 	return super.can_attack()
 
 func set_heading() -> void:
-	if player == null:
+	if player == null or not can_move():
 		return
 	heading = Vector2.LEFT if position.x > player.position.x else Vector2.RIGHT
 
