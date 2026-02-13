@@ -50,6 +50,7 @@ position = Vector2(71, 45)
 
 [node name="Player" parent="ActorsContainer" instance=ExtResource("2_fj7yv")]
 position = Vector2(42, 44)
+has_knife = false
 
 [node name="BasicEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_036b0")]
 position = Vector2(95, 56)
@@ -63,3 +64,5 @@ position = Vector2(32, 55)
 [node name="GoonEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_pkg7o")]
 position = Vector2(64, 58)
 player = NodePath("../Player")
+has_knife = false
+has_gun = true

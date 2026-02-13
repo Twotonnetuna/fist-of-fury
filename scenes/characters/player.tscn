@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://25wfy4npumw6"]
+[gd_scene load_steps=29 format=3 uid="uid://25wfy4npumw6"]
 
 [ext_resource type="PackedScene" uid="uid://cmeabypex8x1m" path="res://scenes/characters/character.tscn" id="1_rp718"]
 [ext_resource type="Script" uid="uid://b86nagq6krumx" path="res://scenes/characters/player.gd" id="2_76oj4"]
 [ext_resource type="Texture2D" uid="uid://didi7spnh5byr" path="res://assets/art/characters/player.png" id="2_yewv4"]
 [ext_resource type="PackedScene" uid="uid://c3q5i51grj6r0" path="res://scenes/characters/enemy_slot.tscn" id="4_dyp2m"]
 [ext_resource type="Texture2D" uid="uid://bhcvia7ic0p7i" path="res://assets/art/characters/player_knife.png" id="5_atpat"]
+[ext_resource type="Texture2D" uid="uid://bmx38x8ajx630" path="res://assets/art/characters/player_gun.png" id="5_kqtwu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_76oj4"]
 radius = 2.0
@@ -36,6 +37,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [80]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GunSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
 
 [sub_resource type="Animation" id="Animation_k4v7y"]
 resource_name = "fall"
@@ -66,6 +79,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [80]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GunSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
 
 [sub_resource type="Animation" id="Animation_xrqxk"]
 resource_name = "grounded"
@@ -94,6 +119,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [82]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GunSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
 }
 
 [sub_resource type="Animation" id="Animation_xhtjm"]
@@ -138,6 +175,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [70, 71, 72]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GunSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
 
 [sub_resource type="Animation" id="Animation_yewv4"]
 resource_name = "idle"
@@ -163,6 +212,18 @@ tracks/1/path = NodePath("KnifeSprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GunSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
@@ -197,6 +258,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [62]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GunSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_qgnko"]
 resource_name = "jumpkick"
@@ -225,6 +298,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [63]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GunSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_2l4js"]
@@ -269,6 +354,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [41, 42, 43, 44, 45]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GunSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
 
 [sub_resource type="Animation" id="Animation_eojnx"]
 resource_name = "land"
@@ -311,6 +408,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [60]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GunSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_rpnd8"]
@@ -355,6 +464,18 @@ tracks/2/keys = {
 "method": &"on_pickup_complete"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GunSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
 
 [sub_resource type="Animation" id="Animation_atpat"]
 resource_name = "punch"
@@ -397,6 +518,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [21, 22, 23]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GunSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
 }
 
 [sub_resource type="Animation" id="Animation_7vyk4"]
@@ -441,6 +574,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [31, 32]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GunSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
 
 [sub_resource type="Animation" id="Animation_jk2m4"]
 resource_name = "roundkick"
@@ -483,6 +628,73 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [51, 52, 53, 54, 55]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GunSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_d6tgn"]
+resource_name = "shoot"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 21]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("KnifeSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [69]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GunSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [20, 20, 21, 22]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_action_complete"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_kqtwu"]
@@ -527,6 +739,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [61]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GunSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="Animation" id="Animation_g66nw"]
 resource_name = "throw"
@@ -570,6 +794,18 @@ tracks/2/keys = {
 "method": &"on_throw_complete"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GunSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [21]
+}
 
 [sub_resource type="Animation" id="Animation_dyp2m"]
 resource_name = "walk"
@@ -600,6 +836,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [10, 11, 12, 13, 14, 15, 16, 17]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GunSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16, 17]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_atpat"]
 _data = {
@@ -616,6 +864,7 @@ _data = {
 &"punch": SubResource("Animation_atpat"),
 &"punch_alt": SubResource("Animation_7vyk4"),
 &"roundkick": SubResource("Animation_jk2m4"),
+&"shoot": SubResource("Animation_d6tgn"),
 &"takeoff": SubResource("Animation_kqtwu"),
 &"throw": SubResource("Animation_g66nw"),
 &"walk": SubResource("Animation_dyp2m")
@@ -632,7 +881,7 @@ size = Vector2(3, 3)
 
 [node name="Player" instance=ExtResource("1_rp718")]
 collision_layer = 2
-collision_mask = 137
+collision_mask = 169
 script = ExtResource("2_76oj4")
 can_respawn = true
 damage = 4
@@ -691,7 +940,13 @@ position = Vector2(-17, 2)
 [node name="EnemySlot4" parent="EnemySlots" index="3" instance=ExtResource("4_dyp2m")]
 position = Vector2(-17, -3)
 
-[node name="KnifeSprite" parent="." index="8"]
+[node name="GunSprite" parent="." index="8"]
+texture = ExtResource("5_kqtwu")
+centered = false
+offset = Vector2(-24, -48)
+frame = 8
+
+[node name="KnifeSprite" parent="." index="9"]
 texture = ExtResource("5_atpat")
 centered = false
 offset = Vector2(-24, -48)
@@ -702,7 +957,7 @@ frame = 80
 [node name="WeaponPosition" parent="KnifeSprite" index="0"]
 position = Vector2(18, -14)
 
-[node name="CollectibleSensor" parent="." index="10"]
+[node name="CollectibleSensor" parent="." index="11"]
 collision_mask = 256
 
 [node name="CollisionShape2D" parent="CollectibleSensor" index="0"]
