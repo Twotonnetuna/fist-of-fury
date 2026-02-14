@@ -50,9 +50,14 @@ func goto_range_position() -> void:
 		time_since_last_range_attack = Time.get_ticks_msec()
 	
 	if can_range_attack() and has_gun and projectile_aim.is_colliding():
-		state = State.SHOOT
+		state = State.PREP_SHOOT
+		time_since_prep_range_attack = Time.get_ticks_msec()
 		time_since_last_range_attack = Time.get_ticks_msec()
-		return super.can_attack()
+
+func handle_prep_shoot() -> void:
+	if state == State.PREP_SHOOT and (Time.get_ticks_msec() - time_since_prep_range_attack > duration_prep_range_attack):
+		shoot_gun()
+		time_since_last_range_attack = Time.get_ticks_msec()
 
 func goto_melee_position() -> void:
 	if can_pickup_collectible():

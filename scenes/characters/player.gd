@@ -15,7 +15,7 @@ func handle_input() -> void:
 		if has_knife:
 			state = State.THROW
 		elif has_gun:
-			state = State.SHOOT
+			shoot_gun()
 		else:
 			if can_pickup_collectible():
 				state = State.PICKUP
