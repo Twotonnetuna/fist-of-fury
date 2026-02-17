@@ -188,6 +188,8 @@ func is_carrying_weapon() -> bool:
 	return has_knife or has_gun
 
 func can_pickup_collectible() -> bool:
+	if can_respawn_knives:
+		return false
 	var collectible_areas := collectible_sensor.get_overlapping_areas()
 	if collectible_areas.size() == 0:
 		return false
@@ -195,6 +197,8 @@ func can_pickup_collectible() -> bool:
 	if collectible.type == Collectible.Type.KNIFE and not is_carrying_weapon():
 		return true
 	if collectible.type == Collectible.Type.GUN and not is_carrying_weapon():
+		return true
+	if collectible.type == Collectible.Type.FOOD:
 		return true
 	return false
 
@@ -220,7 +224,8 @@ func pickup_collectible() -> void:
 		if collectible.type == Collectible.Type.GUN and not has_gun:
 			has_gun = true
 			ammo_left = max_ammo_per_gun
-			
+		if collectible.type == Collectible.Type.FOOD:
+			current_health = max_health
 		collectible.queue_free()
 
 func is_collision_disabled() -> bool:
