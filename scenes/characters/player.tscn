@@ -881,17 +881,19 @@ size = Vector2(3, 3)
 
 [node name="Player" instance=ExtResource("1_rp718")]
 collision_layer = 2
-collision_mask = 169
+collision_mask = 137
 script = ExtResource("2_76oj4")
+autodestroy_on_drop = true
 can_respawn = true
 damage = 4
 damage_gunshot = 8
 damage_power = 6
 duration_grounded = 1000.0
-has_knife = true
+has_gun = true
 jump_intensity = 150.0
 knockback_intensity = 10.0
 knockdown_intensity = 70.0
+max_ammo_per_gun = 3
 max_health = 30
 speed = 35.0
 

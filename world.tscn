@@ -45,17 +45,16 @@ shape = SubResource("RectangleShape2D_tlwt5")
 y_sort_enabled = true
 script = ExtResource("3_gbfbk")
 
+[node name="Player" parent="ActorsContainer" instance=ExtResource("2_fj7yv")]
+position = Vector2(42, 44)
+
 [node name="Barrel" parent="ActorsContainer" instance=ExtResource("4_aqk2v")]
 position = Vector2(71, 45)
 
-[node name="Player" parent="ActorsContainer" instance=ExtResource("2_fj7yv")]
-position = Vector2(42, 44)
-has_knife = false
-
 [node name="BasicEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_036b0")]
 position = Vector2(95, 56)
+collision_mask = 12
 player = NodePath("../Player")
-can_respawn_knives = false
 duration_between_knife_respawn = 1000
 
 [node name="Knife" parent="ActorsContainer" instance=ExtResource("6_dwbse")]
@@ -63,6 +62,6 @@ position = Vector2(32, 55)
 
 [node name="GoonEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_pkg7o")]
 position = Vector2(64, 58)
+collision_mask = 12
 player = NodePath("../Player")
 has_knife = false
-has_gun = true

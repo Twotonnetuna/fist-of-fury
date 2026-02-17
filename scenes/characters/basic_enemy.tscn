@@ -1,10 +1,14 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpbirds0ua111"]
+[gd_scene load_steps=25 format=3 uid="uid://bpbirds0ua111"]
 
 [ext_resource type="PackedScene" uid="uid://cmeabypex8x1m" path="res://scenes/characters/character.tscn" id="1_xsmbu"]
 [ext_resource type="Texture2D" uid="uid://74m82qs4ldbb" path="res://assets/art/characters/enemy_punk.png" id="2_dwul0"]
 [ext_resource type="Script" uid="uid://cakwsvqf518m1" path="res://scenes/characters/basic_enemy.gd" id="2_wh1i7"]
 [ext_resource type="Texture2D" uid="uid://cjqomtq76emiv" path="res://assets/art/characters/enemy_gun.png" id="4_kcdp1"]
 [ext_resource type="Texture2D" uid="uid://ds6tlo8og7kyg" path="res://assets/art/characters/enemy_knife.png" id="4_wh1i7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kcdp1"]
+radius = 2.0
+height = 12.0
 
 [sub_resource type="Animation" id="Animation_dwul0"]
 length = 0.001
@@ -701,7 +705,6 @@ duration_between_melee_attacks = 2000
 duration_between_range_attacks = 4000
 duration_prep_melee_attack = 500
 duration_prep_range_attack = 500
-can_respawn_knives = true
 damage = 2
 damage_gunshot = 5
 duration_grounded = 1000.0
@@ -718,6 +721,10 @@ texture = ExtResource("2_dwul0")
 offset = Vector2(-24, -48)
 hframes = 10
 vframes = 10
+
+[node name="CollisionShape2D" parent="." index="2"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_kcdp1")
 
 [node name="AnimationPlayer" parent="." index="3"]
 libraries = {
@@ -736,7 +743,7 @@ shape = SubResource("RectangleShape2D_dwul0")
 collision_layer = 32
 
 [node name="CollisionShape2D" parent="DamageReceiver" index="0"]
-position = Vector2(0, -18)
+position = Vector2(0, -17)
 shape = SubResource("RectangleShape2D_wh1i7")
 
 [node name="CollateralDamageEmitter" parent="." index="6"]

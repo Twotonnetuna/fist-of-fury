@@ -22,3 +22,4 @@ func _process(_delta: float) -> void:
 	set_point_position(0, Vector2(new_x, -height))
 	if progress >= 1:
 		queue_free()
+	
