@@ -671,6 +671,7 @@ duration_prep_melee_attack = 500
 duration_prep_range_attack = 500
 damage = 2
 max_health = 20
+type = 1
 duration_grounded = 1000.0
 flight_speed = 100.0
 knockback_intensity = 10.0
@@ -678,7 +679,6 @@ knockdown_intensity = 70.0
 speed = 25.0
 damage_gunshot = 5
 duration_between_knife_respawn = 2000
-has_gun = true
 
 [node name="CharacterSprite" parent="." index="1"]
 texture = ExtResource("2_dwul0")

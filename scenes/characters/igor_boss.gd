@@ -82,6 +82,7 @@ func on_receive_damage(_amount: int, direction: Vector2, _hit_type: DamageReceiv
 		state = State.FALL
 		height_speed = knockdown_intensity
 		velocity = direction * knockdown_intensity
+		EntityManager.death_enemy.emit(self)
 	else:
 		velocity = Vector2.ZERO
 		state = State.HURT

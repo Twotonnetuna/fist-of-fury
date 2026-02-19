@@ -6,8 +6,10 @@
 duration_between_melee_attacks = 1500
 duration_between_range_attacks = 2500
 damage = 3
+type = 3
 duration_grounded = 1300.0
 duration_between_knife_respawn = 0
+has_gun = true
 
 [editable path="DamageEmitter"]
 [editable path="DamageReceiver"]
