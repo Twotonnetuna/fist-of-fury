@@ -198,6 +198,8 @@ func is_carrying_weapon() -> bool:
 func can_pickup_collectible() -> bool:
 	if can_respawn_knives:
 		return false
+	if Time.get_ticks_msec() - time_since_knife_dismiss < duration_between_knife_respawn:
+		return false
 	var collectible_areas := collectible_sensor.get_overlapping_areas()
 	if collectible_areas.size() == 0:
 		return false
