@@ -3,23 +3,38 @@ extends Character
 
 const EDGE_SCREEN_BUFFER := 10
 
+@export var duration_appear : float
 @export var duration_between_melee_attacks : int
 @export var duration_between_range_attacks : int
 @export var duration_prep_melee_attack : int
 @export var duration_prep_range_attack : int
 @export var player : Player
 
-var assigned_door_index = -1
+var assigned_door_index := -1
 var player_slot : EnemySlot = null
 var time_since_last_melee_attack := Time.get_ticks_msec()
 var time_since_prep_melee_attack := Time.get_ticks_msec()
 var time_since_last_range_attack := Time.get_ticks_msec()
 var time_since_prep_range_attack := Time.get_ticks_msec()
+var time_since_start_appearing := Time.get_ticks_msec()
 
 func _ready() -> void:
 	super._ready()
 	anim_attacks = ["punch", "punch_alt"]
-	
+
+func _process(delta: float) -> void:
+	super._process(delta)
+	process_appear()
+
+func process_appear() -> void:
+	if state == State.APPEARING:
+		var progress := (Time.get_ticks_msec() - time_since_start_appearing) / duration_appear
+		if progress < 1:
+			modulate.a = progress
+		else:
+			modulate.a = 1
+			state = State.IDLE
+
 func handle_input() -> void:
 	if player != null and can_move():
 		if can_respawn_knives or has_knife or has_gun:
@@ -64,7 +79,11 @@ func assign_door(door: Door) -> void:
 		state = State.WAIT
 		door.open()
 		door.opened.connect(on_action_complete.bind())
-
+	else:
+		state = State.APPEARING
+		modulate.a = 0
+		time_since_start_appearing = Time.get_ticks_msec()
+		
 func goto_melee_position() -> void:
 	if can_pickup_collectible():
 		state = State.PICKUP
@@ -83,7 +102,6 @@ func goto_melee_position() -> void:
 		else:
 			velocity = direction * speed
 	
-
 func handle_prep_attack() -> void:
 	if state == State.PREP_ATTACK and (Time.get_ticks_msec() - time_since_prep_melee_attack > duration_prep_melee_attack):
 		state = State.ATTACK

@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 		var enemy : EnemyData = enemy_data.pop_front()
 		EntityManager.spawn_enemy.emit(enemy)
 		active_enemy_counter += 1
-
+		
 func create_enemy_data() -> void:
 	for enemy : Character in enemies.get_children():
 		enemy_data.append(EnemyData.new(enemy.type, enemy.global_position, enemy.assigned_door_index))
