@@ -22,7 +22,10 @@ collision_mask = 0
 position = Vector2(198, 22)
 shape = SubResource("RectangleShape2D_ecxui")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldColliders/StaticBody2D"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="WorldColliders"]
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldColliders/StaticBody2D2"]
 position = Vector2(198, 74)
 shape = SubResource("RectangleShape2D_ecxui")
 

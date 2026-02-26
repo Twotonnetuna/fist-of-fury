@@ -29,7 +29,7 @@ position = Vector2(11, 27)
 position = Vector2(34, 27)
 
 [node name="BasicEnemy6" parent="Checkpoints/Checkpoint/Enemies" index="2" instance=ExtResource("5_2j5k0")]
-position = Vector2(11, 27)
+position = Vector2(27, 28)
 
 [node name="GoonEnemy" parent="Checkpoints/Checkpoint/Enemies" index="3" instance=ExtResource("4_mslao")]
 position = Vector2(-22, 36)
@@ -72,7 +72,7 @@ content_type = 1
 
 [node name="Door" parent="Doors" index="0" node_paths=PackedStringArray("enemies") instance=ExtResource("9_4jf2y")]
 position = Vector2(150, 32)
-enemies = [NodePath("../../Checkpoints/Checkpoint/Enemies/BasicEnemy4"), NodePath("../../Checkpoints/Checkpoint/Enemies/BasicEnemy5")]
+enemies = [NodePath("../../Checkpoints/Checkpoint/Enemies/BasicEnemy4"), NodePath("../../Checkpoints/Checkpoint/Enemies/BasicEnemy5"), NodePath("../../Checkpoints/Checkpoint/Enemies/BasicEnemy6")]
 
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Checkpoints/Checkpoint2"]
