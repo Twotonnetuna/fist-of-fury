@@ -81,7 +81,7 @@ func _ready() -> void:
 	damage_receiver.damage_received.connect(on_receive_damage.bind())
 	collateral_damage_emitter.area_entered.connect(on_emit_collateral_damage.bind())
 	collateral_damage_emitter.body_entered.connect(on_wall_hit.bind())
-	set_health(max_health)
+	set_health(max_health, type == Character.Type.PLAYER)
 	set_sprite_height_position()
 
 func _process(delta: float) -> void:
@@ -324,6 +324,7 @@ func on_wall_hit(_wall: AnimatableBody2D) -> void:
 	height_speed = knockdown_intensity
 	velocity = -velocity / 2.0
 
-func set_health(health: int) -> void:
+func set_health(health: int, emit_signal: bool = true) -> void:
 	current_health = clamp(health, 0, max_health)
-	DamageManager.health_change.emit(type, current_health, max_health)
+	if emit_signal:
+		DamageManager.health_change.emit(type, current_health, max_health)
