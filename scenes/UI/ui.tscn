@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c72pandurbtky"]
+[gd_scene load_steps=7 format=3 uid="uid://c72pandurbtky"]
 
 [ext_resource type="Script" uid="uid://f5lhv2fuq10m" path="res://scenes/UI/ui.gd" id="1_f54a5"]
 [ext_resource type="Texture2D" uid="uid://dmehhvh06qoc7" path="res://assets/art/ui/avatars/avatar-punk.png" id="1_yb1mt"]
 [ext_resource type="Texture2D" uid="uid://c0detmyhw053q" path="res://assets/art/ui/avatars/avatar-player.png" id="2_41gti"]
 [ext_resource type="PackedScene" uid="uid://o8feacvfg2br" path="res://scenes/UI/healthbar.tscn" id="3_41gti"]
+[ext_resource type="PackedScene" uid="uid://bd4jvhmycde5n" path="res://scenes/UI/combo_indicator.tscn" id="5_7e3k0"]
+[ext_resource type="PackedScene" uid="uid://b8tomo434ngsj" path="res://scenes/UI/score_indicator.tscn" id="6_m41qk"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_f54a5")
@@ -67,5 +69,21 @@ scale = Vector2(-28, 1)
 [node name="HealthGauge" parent="UIContainer/EnemyHealthbar" index="2"]
 layout_direction = 3
 scale = Vector2(-10, 1)
+
+[node name="ComboIndicator" parent="UIContainer" instance=ExtResource("5_7e3k0")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -6.0
+offset_right = 20.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[node name="ScoreIndicator" parent="UIContainer" instance=ExtResource("6_m41qk")]
+layout_mode = 1
+offset_left = 12.0
+offset_right = 40.0
 
 [editable path="UIContainer/EnemyHealthbar"]

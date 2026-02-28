@@ -52,3 +52,4 @@ player = NodePath("Player")
 position = Vector2(42, 44)
 
 [editable path="UI"]
+[editable path="UI/UIContainer/EnemyHealthbar"]
