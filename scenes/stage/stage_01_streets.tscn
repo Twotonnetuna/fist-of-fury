@@ -68,7 +68,6 @@ content_type = 2
 
 [node name="Barrel2" parent="Containers" index="1" instance=ExtResource("7_2j5k0")]
 position = Vector2(177, 50)
-content_type = 1
 
 [node name="Door" parent="Doors" index="0" node_paths=PackedStringArray("enemies") instance=ExtResource("9_4jf2y")]
 position = Vector2(150, 32)

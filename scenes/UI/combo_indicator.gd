@@ -20,6 +20,7 @@ func on_register_hit(type : Character.Type) -> void:
 		time_since_register_hit = Time.get_ticks_msec()
 		refresh()
 	else:
+		combo_reset.emit(current_combo)
 		current_combo = 0
 		refresh()
 

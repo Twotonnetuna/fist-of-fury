@@ -232,6 +232,7 @@ func shoot_gun() -> void:
 	if target != null:
 		target_point = projectile_aim.get_collision_point()
 		target.on_receive_damage(damage_gunshot, heading, DamageReceiver.HitType.KNOCKDOWN)
+		EntityManager.spawn_spark.emit(target.position)
 	var weapon_root_position := Vector2(weapon_position.global_position.x, position.y)
 	var weapon_height := -weapon_position.position.y
 	var distance := target_point.x - weapon_position.global_position.x
