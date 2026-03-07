@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c72pandurbtky"]
+[gd_scene load_steps=9 format=3 uid="uid://c72pandurbtky"]
 
 [ext_resource type="Script" uid="uid://f5lhv2fuq10m" path="res://scenes/UI/ui.gd" id="1_f54a5"]
 [ext_resource type="Texture2D" uid="uid://dmehhvh06qoc7" path="res://assets/art/ui/avatars/avatar-punk.png" id="1_yb1mt"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://o8feacvfg2br" path="res://scenes/UI/healthbar.tscn" id="3_41gti"]
 [ext_resource type="PackedScene" uid="uid://bd4jvhmycde5n" path="res://scenes/UI/combo_indicator.tscn" id="5_7e3k0"]
 [ext_resource type="PackedScene" uid="uid://b8tomo434ngsj" path="res://scenes/UI/score_indicator.tscn" id="6_m41qk"]
+[ext_resource type="Texture2D" uid="uid://bdhf7elov1a72" path="res://assets/art/ui/go-go-go.png" id="7_tpnoy"]
+[ext_resource type="Script" uid="uid://c4fykjoyyo1po" path="res://scenes/UI/flickering_texture_rect.gd" id="8_vb61p"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_f54a5")
@@ -85,5 +87,21 @@ grow_vertical = 0
 layout_mode = 1
 offset_left = 12.0
 offset_right = 40.0
+
+[node name="GoIndicator" type="TextureRect" parent="UIContainer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_top = 11.0
+offset_bottom = 27.0
+grow_horizontal = 0
+texture = ExtResource("7_tpnoy")
+stretch_mode = 2
+script = ExtResource("8_vb61p")
+duration_flicker = 200
+total_flickers = 3
+metadata/_custom_type_script = "uid://c4fykjoyyo1po"
 
 [editable path="UIContainer/EnemyHealthbar"]

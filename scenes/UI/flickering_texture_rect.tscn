@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpsadqia7ajbr"]
+
+[ext_resource type="Script" uid="uid://c4fykjoyyo1po" path="res://scenes/UI/flickering_texture_rect.gd" id="1_bi6y4"]
+
+[node name="FlickeringTextureRect" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bi6y4")
+duration_flicker = 200
+total_flickers = 3
