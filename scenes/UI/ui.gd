@@ -1,6 +1,8 @@
 class_name UI
 extends CanvasLayer
 
+const OPTIONS_SCREEN_PREFAB := preload("res://scenes/UI/options_screen.tscn")
+
 @onready var combo_indicator: ComboIndicator = $UIContainer/ComboIndicator
 @onready var enemy_avatar: TextureRect = $UIContainer/EnemyAvatar
 @onready var enemy_healthbar: Healthbar = $UIContainer/EnemyHealthbar
@@ -10,6 +12,7 @@ extends CanvasLayer
 
 @export var duration_healthbar_visible : int
 
+var options_screen : OptionsScreen = null
 var time_start_healthbar_visible := Time.get_ticks_msec()
 
 var avatar_map : Dictionary = {
@@ -35,7 +38,23 @@ func _process(_delta: float) -> void:
 	if enemy_healthbar.visible and (Time.get_ticks_msec() - time_start_healthbar_visible > duration_healthbar_visible):
 		enemy_avatar.visible = false
 		enemy_healthbar.visible = false
+	handle_input()
+	
+func handle_input() -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		if options_screen == null:
+			options_screen = OPTIONS_SCREEN_PREFAB.instantiate()
+			options_screen.exit.connect(unpause)
+			add_child(options_screen)
+			get_tree().paused = true
+		else:
+			options_screen.queue_free()
+			get_tree().paused = false
 
+func unpause() -> void:
+	options_screen.queue_free()
+	get_tree().paused = false
+	
 func on_character_health_change(type: Character.Type, current_health: int, max_health: int) -> void:
 	if type == Character.Type.PLAYER:
 		player_healthbar.refresh(current_health, max_health)

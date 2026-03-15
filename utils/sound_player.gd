@@ -3,7 +3,7 @@ extends Node
 
 @onready var sounds : Array[AudioStreamPlayer] = [$SFXClick, $SFXFood, $SFXGogogo, $SFXGrunt, $SFXGunShot, $SFXHit1, $SFXHit2, $SFXKnife, $SFXSwoosh]
 
-enum Sound {ClICK, FOOD, GOGOGO, GRUNT, GUNSHOT, HIT1, HIT2, KNIFE, SWOOSH}
+enum Sound {CLICK, FOOD, GOGOGO, GRUNT, GUNSHOT, HIT1, HIT2, KNIFE, SWOOSH}
 
 func play(sfx: Sound, tweak_pitch : bool = false) -> void:
 	var added_pitch := 0.0

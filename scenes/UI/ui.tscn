@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c4fykjoyyo1po" path="res://scenes/UI/flickering_texture_rect.gd" id="8_vb61p"]
 
 [node name="UI" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_f54a5")
 duration_healthbar_visible = 1000
 

@@ -35,3 +35,5 @@ shape = SubResource("RectangleShape2D_ecxui")
 [node name="Containers" type="Node2D" parent="."]
 
 [node name="Doors" type="Node2D" parent="."]
+
+[node name="Fixtures" type="Node2D" parent="."]
