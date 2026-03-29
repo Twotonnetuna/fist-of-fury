@@ -17,8 +17,7 @@ func _ready() -> void:
 	refresh()
 
 func add_combo(points: int) -> void:
-	real_score += int((points * (points + 1)) / 2.0)
-	start_update()
+	add_points(int((points * (points + 1)) / 2.0))
 
 func start_update() -> void:
 	prior_score = displayed_score
@@ -26,7 +25,10 @@ func start_update() -> void:
 	refresh()
 
 func on_player_revive() -> void:
-	real_score = max(0, real_score - points_per_life)
+	add_points(-points_per_life)
+
+func add_points(points: int) -> void:
+	real_score = max(0, real_score + points)
 	start_update()
 
 func _process(_delta: float) -> void:

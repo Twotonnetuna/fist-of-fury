@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1e5tlg1bph8h"]
+
+[ext_resource type="Script" uid="uid://dxccxhwj3xkca" path="res://scenes/UI/game_over_screen.gd" id="1_hff0f"]
+[ext_resource type="Theme" uid="uid://dlbqbcwpyflo1" path="res://gui_theme.tres" id="1_k3wv6"]
+[ext_resource type="PackedScene" uid="uid://b8tomo434ngsj" path="res://scenes/UI/score_indicator.tscn" id="2_hff0f"]
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hff0f")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_k3wv6")
+theme_override_colors/font_color = Color(1, 0.110000014, 0.110000014, 1)
+theme_override_font_sizes/font_size = 12
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_k3wv6")
+text = "SCORE:"
+
+[node name="ScoreIndicator" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_hff0f")]
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true

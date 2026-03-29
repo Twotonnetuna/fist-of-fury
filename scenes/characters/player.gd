@@ -16,7 +16,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 	process_time_between_combos()
-	DamageManager.player_revive.connect(on_player_revive.bind())
+	DamageManager.player_revive.connect(on_player_revive)
 
 func process_time_between_combos() -> void:
 	if Time.get_ticks_msec() - time_since_last_successful_attack > max_duration_between_successful_hits:

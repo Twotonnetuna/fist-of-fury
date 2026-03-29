@@ -2,6 +2,7 @@ class_name UI
 extends CanvasLayer
 
 const DEATH_SCREEN_PREFAB := preload("res://scenes/UI/death_screen.tscn")
+const GAME_OVER_PREFAB := preload("res://scenes/UI/game_over_screen.tscn")
 const OPTIONS_SCREEN_PREFAB := preload("res://scenes/UI/options_screen.tscn")
 
 @onready var combo_indicator: ComboIndicator = $UIContainer/ComboIndicator
@@ -14,6 +15,7 @@ const OPTIONS_SCREEN_PREFAB := preload("res://scenes/UI/options_screen.tscn")
 @export var duration_healthbar_visible : int
 
 var death_screen : DeathScreen = null
+var game_over_screen : GameOverScreen = null
 var options_screen : OptionsScreen = null
 var time_start_healthbar_visible := Time.get_ticks_msec()
 
@@ -62,6 +64,7 @@ func on_character_health_change(type: Character.Type, current_health: int, max_h
 		player_healthbar.refresh(current_health, max_health)
 		if current_health == 0 and death_screen == null:
 			death_screen = DEATH_SCREEN_PREFAB.instantiate()
+			death_screen.game_over.connect(on_game_over.bind())
 			add_child(death_screen)
 	else:
 		time_start_healthbar_visible = Time.get_ticks_msec()
@@ -69,6 +72,12 @@ func on_character_health_change(type: Character.Type, current_health: int, max_h
 		enemy_healthbar.refresh(current_health, max_health)
 		enemy_avatar.visible = true
 		enemy_healthbar.visible = true
+
+func on_game_over() -> void:
+	if game_over_screen == null:
+		game_over_screen = GAME_OVER_PREFAB.instantiate()
+		game_over_screen.set_score(score_indicator.real_score)
+		add_child(game_over_screen)
 
 func on_checkpoint_complete() -> void:
 	go_indicator.start_flickering()
