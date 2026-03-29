@@ -1,6 +1,8 @@
 class_name Player
 extends Character
 
+const REVIVE_HEIGHT := 80
+
 @export var max_duration_between_successful_hits : int
 
 @onready var enemy_slots : Array = $EnemySlots.get_children()
@@ -14,11 +16,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 	process_time_between_combos()
-	
+	DamageManager.player_revive.connect(on_player_revive.bind())
+
 func process_time_between_combos() -> void:
 	if Time.get_ticks_msec() - time_since_last_successful_attack > max_duration_between_successful_hits:
 		attack_combo_index = 0
-	
+
+func on_player_revive() -> void:
+	current_health = max_health
+	state = State.JUMP
+	height = REVIVE_HEIGHT
+
 func handle_input() -> void:
 	if can_move():
 		var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
