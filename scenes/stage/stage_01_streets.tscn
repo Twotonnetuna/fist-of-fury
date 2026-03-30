@@ -192,6 +192,9 @@ position = Vector2(301, 0)
 texture = ExtResource("14_gt854")
 centered = false
 
+[node name="PlayerSpawnLocation" parent="." index="6"]
+position = Vector2(25, 51)
+
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Checkpoints/Checkpoint2"]
 [editable path="Checkpoints/Checkpoint3"]
