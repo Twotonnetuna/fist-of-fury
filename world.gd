@@ -7,22 +7,36 @@ const STAGE_PREFABS := [
 ]
 
 @onready var actors_container: Node2D = $ActorsContainer
-@onready var player: CharacterBody2D = $ActorsContainer/Player
 @onready var camera: Camera2D = $Camera
 @onready var stage_container: Node2D = $StageContainer
+@onready var stage_transition: StageTransition = $UI/UIContainer/StageTransition
 
 var camera_initial_position := Vector2.ZERO
 var current_stage_index := -1
 var is_camera_locked := false
+var is_stage_ready_for_loading := false
+var player : Player = null
 
 func _ready() -> void:
 	camera_initial_position = camera.position
 	StageManager.checkpoint_start.connect(on_checkpoint_start.bind())
 	StageManager.checkpoint_complete.connect(on_checkpoint_complete.bind())
-	StageManager.stage_complete.connect(load_next_stage.bind())
+	StageManager.stage_interim.connect(load_next_stage.bind())
 	load_next_stage()
 
 func _process(_delta: float) -> void:
+	if is_stage_ready_for_loading:
+		is_stage_ready_for_loading = false
+		var stage : Stage = STAGE_PREFABS[current_stage_index].instantiate()
+		stage_container.add_child(stage)
+		player = PLAYER_PREFAB.instantiate()
+		actors_container.add_child(player)
+		player.position = stage.get_player_spawn_location()
+		actors_container.player = player
+		camera.position = camera_initial_position
+		camera.reset_smoothing()
+		stage_transition.end_transition()
+
 	if not is_camera_locked and player.position.x > camera.position.x:
 		camera.position.x = player.position.x
 
@@ -31,15 +45,9 @@ func load_next_stage() -> void:
 	if current_stage_index < STAGE_PREFABS.size():
 		for actor : Node2D in actors_container.get_children():
 			actor.queue_free()
-		var stage : Stage = STAGE_PREFABS[current_stage_index].instantiate()
 		for existing_stage in stage_container.get_children():
 			existing_stage.queue_free()
-		stage_container.add_child(stage)
-		player = PLAYER_PREFAB.instantiate()
-		actors_container.add_child(player)
-		player.position = stage.get_player_spawn_location()
-		actors_container.player = player
-		camera.position = camera_initial_position
+		is_stage_ready_for_loading = true
 
 func on_checkpoint_start() -> void:
 	is_camera_locked = true

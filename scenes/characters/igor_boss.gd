@@ -74,12 +74,12 @@ func can_attack() -> bool:
 func is_vulnerable() -> bool:
 	return state == State.RECOVER
 
-func on_receive_damage(_amount: int, direction: Vector2, _hit_type: DamageReceiver.HitType) -> void:
+func on_receive_damage(amount: int, direction: Vector2, _hit_type: DamageReceiver.HitType) -> void:
 	if not is_vulnerable():
 		knockback_force = direction * knockback_intensity
 		return
 	ComboManager.register_hit.emit(type)
-	current_health = clamp(current_health, 0, max_health)
+	current_health = clamp(current_health - amount, 0, max_health)
 	if current_health == 0:
 		EntityManager.spawn_spark.emit(position)
 		state = State.FALL

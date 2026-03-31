@@ -11,12 +11,12 @@ var time_since_last_successful_attack := Time.get_ticks_msec()
 
 func _ready() -> void:
 	super._ready()
+	DamageManager.player_revive.connect(on_player_revive)
 	anim_attacks = ["punch", "punch_alt", "kick", "roundkick"]
 
 func _process(delta: float) -> void:
 	super._process(delta)
 	process_time_between_combos()
-	DamageManager.player_revive.connect(on_player_revive)
 
 func process_time_between_combos() -> void:
 	if Time.get_ticks_msec() - time_since_last_successful_attack > max_duration_between_successful_hits:

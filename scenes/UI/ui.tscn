@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c72pandurbtky"]
+[gd_scene load_steps=10 format=3 uid="uid://c72pandurbtky"]
 
 [ext_resource type="Script" uid="uid://f5lhv2fuq10m" path="res://scenes/UI/ui.gd" id="1_f54a5"]
 [ext_resource type="Texture2D" uid="uid://dmehhvh06qoc7" path="res://assets/art/ui/avatars/avatar-punk.png" id="1_yb1mt"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b8tomo434ngsj" path="res://scenes/UI/score_indicator.tscn" id="6_m41qk"]
 [ext_resource type="Texture2D" uid="uid://bdhf7elov1a72" path="res://assets/art/ui/go-go-go.png" id="7_tpnoy"]
 [ext_resource type="Script" uid="uid://c4fykjoyyo1po" path="res://scenes/UI/flickering_texture_rect.gd" id="8_vb61p"]
+[ext_resource type="PackedScene" uid="uid://2sado5cejroi" path="res://scenes/UI/stage_transition.tscn" id="9_vb61p"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -104,5 +105,10 @@ script = ExtResource("8_vb61p")
 duration_flicker = 200
 total_flickers = 3
 metadata/_custom_type_script = "uid://c4fykjoyyo1po"
+
+[node name="StageTransition" parent="UIContainer" instance=ExtResource("9_vb61p")]
+layout_mode = 1
+offset_left = -1.0
+offset_right = -1.0
 
 [editable path="UIContainer/EnemyHealthbar"]

@@ -8,7 +8,7 @@ extends Node2D
 
 @export var music : MusicManager.Music
 
-func init() -> void:
+func _init() -> void:
 	StageManager.checkpoint_complete.connect(on_checkpoint_complete.bind())
 
 func _ready() -> void:
